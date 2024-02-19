@@ -32,5 +32,9 @@ best_solves = []
 
 for i in range(10):
     best_solves.append(min(solves[i * 3], solves[i * 3 + 1], solves[i * 3 + 2]))
+    print(
+        f"{solves[i * 3], solves[i * 3 + 1], solves[i * 3 + 2]} best: {best_solves[i]}"
+    )
+    # print(solves[i * 3], solves[i * 3 + 1], solves[i * 3 + 2])
 
-print(sum(best_solves) / 10)
+print(f"mo10bo3: {sum(best_solves) / len(best_solves)}")
