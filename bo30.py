@@ -1,35 +1,40 @@
 import csv
 
+
 def minute(value):
     index_colon = value.find(":")
     if index_colon != -1:
         minutes = float(value[:index_colon])
-        seconds = float(value[index_colon+1:])
-        return seconds + minutes*60
+        seconds = float(value[index_colon + 1 :])
+        return seconds + minutes * 60
     else:
         return value
-    
+
 
 solves = []
-with open("csTimerExport_20240217_162331.csv") as csvfile:
+with open("csTimerExport_20240218_114925.csv") as csvfile:
 
-    reader = csv.reader(csvfile, delimiter=';')
+    reader = csv.reader(csvfile, delimiter=";")
     for row in reader:
-        #print(row[1])
+        # print(row[1])
         if row[1] != "Time":
             solves.append(row[1])
 
-#print(solves)
+# print(solves)
 for i, solve in enumerate(solves):
     if solve.startswith("DNF"):
-       solves[i] = float("inf")
+        solves[i] = float("inf")
     else:
         solves[i] = float(minute(solve))
-#print(solves)
+# print(solves)
 
 best_solves = []
 
 for i in range(10):
-    best_solves.append(min(solves[i*3], solves[i*3 + 1], solves[i*3 + 2]))
+    best_solves.append(min(solves[i * 3], solves[i * 3 + 1], solves[i * 3 + 2]))
+    print(
+        f"{solves[i * 3], solves[i * 3 + 1], solves[i * 3 + 2]} best: {best_solves[i]}"
+    )
+    # print(solves[i * 3], solves[i * 3 + 1], solves[i * 3 + 2])
 
-print(sum(best_solves) / 10)
+print(f"mo10bo3: {sum(best_solves) / len(best_solves)}")
